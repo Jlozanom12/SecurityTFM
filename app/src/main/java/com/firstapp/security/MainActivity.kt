@@ -11,11 +11,13 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.firstapp.security.cams.StreamingScreen
+import com.firstapp.security.presentation.cams.StreamingScreen
 import com.firstapp.security.components.BottomBar
 import com.firstapp.security.models.Routes
-import com.firstapp.security.presentation.CameraViewScreen
-import com.firstapp.security.presentation.HomeScreen
+import com.firstapp.security.presentation.extras.CameraViewScreen
+import com.firstapp.security.presentation.extras.HomeScreen
+import com.firstapp.security.presentation.profile.ProfileScreen
+import com.firstapp.security.presentation.userImages.ImageGalleryScreen
 import com.firstapp.security.presentation.userImages.PreviewSecurityImagesScreen
 import com.firstapp.security.ui.theme.SecurityTheme
 
@@ -46,6 +48,12 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(Routes.PreviewSecurityImagesScreen.routes) {
                             PreviewSecurityImagesScreen()
+                        }
+                        composable(Routes.ProfileScreen.routes) {
+                            ProfileScreen(navController)
+                        }
+                        composable(Routes.ImageGalleryScreen.routes) {
+                            ImageGalleryScreen()
                         }
                     }
                 }

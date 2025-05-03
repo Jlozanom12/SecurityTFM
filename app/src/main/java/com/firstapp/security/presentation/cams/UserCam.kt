@@ -1,4 +1,4 @@
-package com.firstapp.security.cams
+package com.firstapp.security.presentation.cams
 /*
 import android.net.Uri
 import androidx.compose.foundation.layout.fillMaxSize

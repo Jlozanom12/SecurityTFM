@@ -28,13 +28,13 @@ fun BottomBar(navController: NavController){
             IconButton(onClick = { navController.navigate(Routes.StreamingScreen.routes) }) {
                 Icon(Icons.Filled.VideoCameraFront, contentDescription = "VideoCamera")
             }
-            IconButton(onClick = { navController.navigate(Routes.HomeScreen.routes) }) {
+            IconButton(onClick = { navController.navigate(Routes.ProfileScreen.routes) }) {
                 Icon(
                     Icons.Filled.Person,
                     contentDescription = "Person",
                 )
             }
-            IconButton(onClick = { navController.navigate(Routes.PreviewSecurityImagesScreen.routes) }) {
+            IconButton(onClick = { navController.navigate(Routes.ImageGalleryScreen.routes) }) {
                 Icon(
                     Icons.Filled.ImageSearch,
                     contentDescription = "ImageSearch",

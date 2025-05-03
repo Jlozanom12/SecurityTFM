@@ -4,5 +4,7 @@ sealed class Routes(val routes:String){
     object HomeScreen : Routes("HomeScreen")
     object CameraViewScreen: Routes("CameraViewScreen")
     object StreamingScreen: Routes("StreamingScreen")
-    object  PreviewSecurityImagesScreen: Routes("PreviewSecurityImagesScreen")
+    object PreviewSecurityImagesScreen: Routes("PreviewSecurityImagesScreen")
+    object ProfileScreen:Routes("ProfileScreen")
+    object ImageGalleryScreen:Routes("ImageGalleryScreen")
 }

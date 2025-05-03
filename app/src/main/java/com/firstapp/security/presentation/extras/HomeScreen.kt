@@ -1,4 +1,4 @@
-package com.firstapp.security.presentation
+package com.firstapp.security.presentation.extras
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

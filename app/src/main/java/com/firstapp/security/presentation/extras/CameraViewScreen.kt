@@ -1,4 +1,4 @@
-package com.firstapp.security.presentation
+package com.firstapp.security.presentation.extras
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
