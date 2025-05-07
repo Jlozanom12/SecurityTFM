@@ -2,7 +2,6 @@ package com.firstapp.security.presentation.profile
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -33,6 +32,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.firstapp.security.R
 import com.firstapp.security.models.Routes
+import com.firstapp.security.presentation.profile.components.ClickableTextField
 
 /*
 @Composable

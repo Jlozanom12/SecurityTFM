@@ -49,8 +49,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import okhttp3.Response
-import kotlin.io.encoding.ExperimentalEncodingApi
+
 
 @Composable
 fun ImageGalleryScreen() {

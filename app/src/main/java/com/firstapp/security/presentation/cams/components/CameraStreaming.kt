@@ -6,12 +6,13 @@ import android.webkit.WebViewClient
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 
 
-
+/*
 @SuppressLint("SetJavaScriptEnabled")
 @Composable
 fun CameraStreaming() {
@@ -31,34 +32,29 @@ fun CameraStreaming() {
         }
     )
 }
+*/
 
-
-
-
-
-/*
-@SuppressLint("SetJavaScriptEnabled")
 @Composable
-fun CameraStreaming() {
-    val context = LocalContext.current
-    val webView = remember {
-        WebView(context).apply {
-            webViewClient = WebViewClient()
-            settings.javaScriptEnabled = true
-            settings.domStorageEnabled = true
-            settings.loadWithOverviewMode = true
-            settings.useWideViewPort = true
-            loadUrl("http://192.168.14.92:8080/stream")
-        }
-    }
+fun CameraStreaming(webViewRef: MutableState<WebView?>) {
+    val streamUrl = "http://192.168.14.92:8080/stream"
 
     AndroidView(
         modifier = Modifier.fillMaxSize(),
-        factory = { webView }
+        factory = { context ->
+            WebView(context).apply {
+                webViewClient = WebViewClient()
+                settings.javaScriptEnabled = true
+                settings.domStorageEnabled = true
+                settings.loadWithOverviewMode = true
+                settings.useWideViewPort = true
+                loadUrl(streamUrl)
+
+                webViewRef.value = this // Guardamos referencia al WebView
+            }
+        }
     )
 }
 
- */
 
 
 
