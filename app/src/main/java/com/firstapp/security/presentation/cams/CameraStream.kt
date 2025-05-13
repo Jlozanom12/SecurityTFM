@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.util.Log
 import android.webkit.WebView
+import android.widget.Space
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -40,6 +41,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.firstapp.security.models.Routes
 import com.firstapp.security.presentation.cams.components.CameraStreaming
+import com.firstapp.security.presentation.cams.components.CardComponent
 import com.firstapp.security.presentation.cams.components.CardNoCam
 import io.ktor.utils.io.errors.IOException
 import okhttp3.Call
@@ -52,53 +54,6 @@ import okhttp3.Response
 import java.io.ByteArrayOutputStream
 
 
-/*
-@Composable
-fun StreamingScreen(navController: NavController) {
-    Scaffold(
-        floatingActionButton = {
-            FloatingActionButton(
-                onClick = {},
-                containerColor = MaterialTheme.colorScheme.primary,
-                contentColor = Color.White,
-                modifier = Modifier.padding(bottom = 80.dp)
-            ) {
-                Icon(Icons.Default.Add, contentDescription = "Agregar cámara")
-            }
-
-        },
-        floatingActionButtonPosition = FabPosition.End
-    ) { padding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 50.dp),
-
-        ) {
-            Spacer(modifier = Modifier.padding(20.dp))
-            Card(
-                shape = RoundedCornerShape(16.dp),
-                modifier = Modifier
-                    .padding(12.dp)
-                    .fillMaxWidth()
-                    .height(200.dp),
-                elevation = CardDefaults.cardElevation(8.dp),
-                colors = CardDefaults.cardColors(Color.White),
-                onClick = { navController.navigate(Routes.CameraViewScreen.routes) }
-            ) {
-                Box(modifier = Modifier.fillMaxSize(),
-                    contentAlignment = Alignment.Center
-                    ) {
-
-                    CameraStreaming()
-                }
-            }
-            CardNoCam()
-        }
-    }
-}
-
- */
 
 /* Streaming Screen buena
 @Composable
@@ -179,47 +134,21 @@ fun StreamingScreen(navController: NavController) {
         },
         floatingActionButtonPosition = FabPosition.End
     ) { padding ->
-        Row(
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(12.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            Card(
-                shape = RoundedCornerShape(topStart = 16.dp, bottomStart = 16.dp),
-                modifier = Modifier
-                    .weight(3f)
-                    .height(200.dp),
-                elevation = CardDefaults.cardElevation(8.dp),
-                colors = CardDefaults.cardColors(Color.White),
-                onClick = { navController.navigate(Routes.CameraViewScreen.routes) }
-            ) {
-                CameraStreaming(webViewRef)
-            }
+                .fillMaxSize()
+                .background(Color(0xFFF5F5F5))
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ){
+            CardComponent(navController)
 
-            Button(
-                onClick = { navController.navigate(Routes.CameraViewScreen.routes) },
-                modifier = Modifier
-                    .weight(1f)
-                    .height(200.dp),
-                shape = RoundedCornerShape(topEnd = 16.dp, bottomEnd = 16.dp),
-                colors = ButtonColors(
-                    containerColor = Color.White,
-                    contentColor = Color.White,
-                    disabledContentColor = Color.White,
-                    disabledContainerColor = Color.White
-                )
-            ) {
-                Icon(
-                    imageVector = Icons.Default.ArrowForward,
-                    contentDescription = "Ver cámara",
-                    tint = Color.Black
-                )
-            }
+            CardNoCam()
         }
+
+
     }
 }
-
 fun uploadSnapshot(bitmap: Bitmap, uploadUrl: String) {
     val stream = ByteArrayOutputStream()
     bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)

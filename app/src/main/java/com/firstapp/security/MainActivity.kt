@@ -1,10 +1,14 @@
 package com.firstapp.security
 
 import android.annotation.SuppressLint
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
@@ -14,14 +18,17 @@ import androidx.navigation.compose.rememberNavController
 import com.firstapp.security.presentation.cams.StreamingScreen
 import com.firstapp.security.components.BottomBar
 import com.firstapp.security.models.Routes
+import com.firstapp.security.presentation.alerts.AlertScreen
 import com.firstapp.security.presentation.extras.CameraViewScreen
 import com.firstapp.security.presentation.extras.HomeScreen
 import com.firstapp.security.presentation.profile.ProfileScreen
+import com.firstapp.security.presentation.profile.extras.HelpScreen
 import com.firstapp.security.presentation.userImages.ImageGalleryScreen
 import com.firstapp.security.presentation.userImages.PreviewSecurityImagesScreen
 import com.firstapp.security.ui.theme.SecurityTheme
 
 class MainActivity : ComponentActivity() {
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +39,7 @@ class MainActivity : ComponentActivity() {
                 Scaffold(modifier = Modifier.fillMaxSize(),
                     bottomBar = { BottomBar(navController) }
                     ) {
-
+                    
                     NavHost(
                         navController = navController,
                         startDestination = Routes.StreamingScreen.routes
@@ -54,6 +61,12 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(Routes.ImageGalleryScreen.routes) {
                             ImageGalleryScreen()
+                        }
+                        composable(Routes.AlertScreen.routes) {
+                            AlertScreen()
+                        }
+                        composable(Routes.HelpScreen.routes) {
+                            HelpScreen()
                         }
                     }
                 }

@@ -35,6 +35,7 @@ import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.launch
 import android.util.Base64
 import android.util.Log
+import androidx.compose.foundation.background
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.ui.text.font.FontWeight
@@ -73,13 +74,14 @@ fun ImageGalleryScreen() {
 
     when {
         isLoading -> {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Box(Modifier.fillMaxSize() .background(Color(0xFFF5F5F5)), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator()
             }
         }
 
         error != null -> {
-            Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+            Box(Modifier.fillMaxSize() .background(Color(0xFFF5F5F5))
+                , contentAlignment = Alignment.Center) {
                 Text(text = "Error: ${error}", style = MaterialTheme.typography.bodyMedium)
             }
         }
@@ -87,6 +89,7 @@ fun ImageGalleryScreen() {
         else -> {
             LazyColumn(
                 modifier = Modifier.fillMaxSize().padding(16.dp)
+                    .background(Color(0xFFF5F5F5))
             ) {
                 items(images) { imageData ->
                     ImageItem(imageData)
@@ -134,7 +137,7 @@ suspend fun fetchImagesFromServer(): List<ImageData2> {
         val client = OkHttpClient()
 
         val request = Request.Builder()
-            .url("http://44.211.127.233:5000/images")
+            .url("http://50.17.211.163:5000/images")
             .build()
 
         val response = client.newCall(request).execute()

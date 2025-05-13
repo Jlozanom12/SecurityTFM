@@ -1,6 +1,7 @@
 package com.firstapp.security.presentation.profile
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -14,6 +15,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.AddAlert
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.List
@@ -124,8 +126,9 @@ fun ProfileScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .background(Color(0xFFF5F5F5))
             .verticalScroll(rememberScrollState()),
-        horizontalAlignment = Alignment.CenterHorizontally
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         ProfileHeader()
         ProfileMenu(navController)
@@ -139,7 +142,7 @@ fun ProfileScreen(navController: NavController) {
 fun ProfileHeader() {
     Box(
         modifier = Modifier
-            .padding(16.dp)
+            .padding(top = 50.dp, end = 20.dp)
             .size(120.dp)
             .clip(CircleShape)
             .clickable {}, // Aquí puedes agregar funcionalidad para cambiar la foto
@@ -164,17 +167,21 @@ fun ProfileMenu(navController: NavController) {
         modifier = Modifier.fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Spacer(modifier = Modifier.height(100.dp))
+
+        HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp))
+
         ProfileMenuItem("Información Personal", Icons.Default.Person) {
              navController.navigate(Routes.HomeScreen.routes)
         }
-        ProfileMenuItem("Entradas", Icons.Default.List) {
-            navController.navigate(Routes.HomeScreen.routes)
+        ProfileMenuItem("Alertas", Icons.Default.AddAlert) {
+            navController.navigate(Routes.AlertScreen.routes)
         }
         ProfileMenuItem("Favoritos", Icons.Default.Favorite) {
             navController.navigate(Routes.HomeScreen.routes)
         }
         ProfileMenuItem("Ayuda", Icons.Default.Info) {
-            navController.navigate(Routes.HomeScreen.routes)
+            navController.navigate(Routes.HelpScreen.routes)
         }
 
         Spacer(modifier = Modifier.height(40.dp))
