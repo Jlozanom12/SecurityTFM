@@ -1,8 +1,6 @@
 package com.firstapp.security
 
 import android.annotation.SuppressLint
-import android.app.NotificationChannel
-import android.app.NotificationManager
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -20,9 +18,8 @@ import com.firstapp.security.components.BottomBar
 import com.firstapp.security.models.Routes
 import com.firstapp.security.presentation.alerts.AlertScreen
 import com.firstapp.security.presentation.extras.CameraViewScreen
-import com.firstapp.security.presentation.extras.HomeScreen
 import com.firstapp.security.presentation.profile.ProfileScreen
-import com.firstapp.security.presentation.profile.extras.HelpScreen
+import com.firstapp.security.presentation.extras.HelpScreen
 import com.firstapp.security.presentation.userImages.ImageGalleryScreen
 import com.firstapp.security.presentation.userImages.PreviewSecurityImagesScreen
 import com.firstapp.security.ui.theme.SecurityTheme
@@ -38,17 +35,13 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 Scaffold(modifier = Modifier.fillMaxSize(),
                     bottomBar = { BottomBar(navController) }
-                    ) {
-                    
+                ) {
                     NavHost(
                         navController = navController,
                         startDestination = Routes.StreamingScreen.routes
                     ) {
                         composable(Routes.StreamingScreen.routes) {
                             StreamingScreen(navController)
-                        }
-                        composable(Routes.HomeScreen.routes) {
-                            HomeScreen()
                         }
                         composable(Routes.CameraViewScreen.routes) {
                             CameraViewScreen()

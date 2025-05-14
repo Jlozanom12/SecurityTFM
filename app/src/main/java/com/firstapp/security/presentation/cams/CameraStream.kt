@@ -32,11 +32,14 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.firstapp.security.models.Routes
@@ -103,6 +106,74 @@ fun StreamingScreen(navController: NavController) {
     }
 }
 */
+
+@Composable
+fun StreamingScreen(navController: NavController) {
+    Scaffold(
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {},
+                containerColor = MaterialTheme.colorScheme.primary,
+                contentColor = Color.White,
+                modifier = Modifier.padding(bottom = 80.dp)
+            ) {
+                Icon(Icons.Default.Add, contentDescription = "Añadir Cámara")
+            }
+        },
+        floatingActionButtonPosition = FabPosition.End
+    ) { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color(0xFF121C2B))
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ){
+            Text(modifier = Modifier.padding(top = 40.dp,start =20.dp),text ="Mis cámaras", color = Color.White, fontSize = 25.sp, fontWeight = FontWeight.Bold)
+
+            CardComponent(navController)
+
+            CardNoCam()
+        }
+
+
+    }
+}
+/**
+ *Sube una imagen (captura de pantalla del streaming) al servidor mediante una petición HTTP POST.
+ * Convierte el Bitmap en un array de bytes formato JPEG.
+
+ *@param bitmap La imagen en formato Bitmap que se desea subir.
+ *@param uploadUrl La URL del servidor donde se enviará la imagen
+ */
+fun uploadSnapshot(bitmap: Bitmap, uploadUrl: String) {
+    val stream = ByteArrayOutputStream()
+    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+    val byteArray = stream.toByteArray()
+
+    val requestBody = byteArray.toRequestBody("image/jpeg".toMediaTypeOrNull())
+    val request = Request.Builder()
+        .url(uploadUrl)
+        .post(requestBody)
+        .build()
+
+    OkHttpClient().newCall(request).enqueue(object : Callback {
+         override fun onFailure(call: Call, e: IOException) {
+            Log.e("UPLOAD", "Error al subir la imagen", e)
+        }
+
+        override fun onResponse(call: Call, response: Response) {
+            if (response.isSuccessful) {
+                Log.d("UPLOAD", "Imagen subida correctamente")
+            } else {
+                Log.e("UPLOAD", "Error del servidor: ${response.code}")
+            }
+        }
+    })
+}
+
+/*
+
 //Prueba  Capturas
 @Composable
 fun StreamingScreen(navController: NavController) {
@@ -137,7 +208,7 @@ fun StreamingScreen(navController: NavController) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFFF5F5F5))
+                .background(Color(0xFF121C2B))
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ){
@@ -149,67 +220,6 @@ fun StreamingScreen(navController: NavController) {
 
     }
 }
-fun uploadSnapshot(bitmap: Bitmap, uploadUrl: String) {
-    val stream = ByteArrayOutputStream()
-    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
-    val byteArray = stream.toByteArray()
-
-    val requestBody = byteArray.toRequestBody("image/jpeg".toMediaTypeOrNull())
-    val request = Request.Builder()
-        .url(uploadUrl)
-        .post(requestBody)
-        .build()
-
-    OkHttpClient().newCall(request).enqueue(object : Callback {
-         override fun onFailure(call: Call, e: IOException) {
-            Log.e("UPLOAD", "Error al subir la imagen", e)
-        }
-
-        override fun onResponse(call: Call, response: Response) {
-            if (response.isSuccessful) {
-                Log.d("UPLOAD", "Imagen subida correctamente")
-            } else {
-                Log.e("UPLOAD", "Error del servidor: ${response.code}")
-            }
-        }
-    })
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/* Primera prueba cards
-@Composable
-fun StreamingScreen(navController: NavController) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize(),
-    ) {
-        Spacer(modifier = Modifier.padding(20.dp))
-        Card(
-            shape = RoundedCornerShape(16.dp),
-            modifier = Modifier
-                .padding(12.dp)
-                .fillMaxWidth()
-                .height(200.dp),
-            elevation = CardDefaults.cardElevation(8.dp),
-            colors = CardDefaults.cardColors(Color.White),
-            onClick = { navController.navigate(Routes.CameraViewScreen.routes) }
-        ) {
-
-        }
-        CardNoCam()
-    }
-}
-
  */
 
 

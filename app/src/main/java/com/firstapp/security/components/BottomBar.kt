@@ -20,10 +20,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import com.firstapp.security.models.Routes
 
-
+/**
+ * Componente reutilizable.Barra del menú con iconos.
+ */
 @Composable
 fun BottomBar(navController: NavController){
-    BottomAppBar(){
+    BottomAppBar(
+        containerColor = Color(0xFFBDBDBD),
+        contentColor = Color.Black
+    ){
         Row (modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween){
 

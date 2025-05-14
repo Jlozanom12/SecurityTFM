@@ -7,16 +7,16 @@ import androidx.navigation.compose.composable
 import com.firstapp.security.presentation.cams.StreamingScreen
 import com.firstapp.security.models.Routes
 import com.firstapp.security.presentation.extras.CameraViewScreen
-import com.firstapp.security.presentation.extras.HomeScreen
+import com.firstapp.security.presentation.profile.ProfileScreen
 import com.firstapp.security.presentation.userImages.PreviewSecurityImagesScreen
 
 
 @Composable
 fun Navigation(navController: NavHostController){
-    NavHost(navController = navController, startDestination = Routes.HomeScreen.routes) {
+    NavHost(navController = navController, startDestination = Routes.ProfileScreen.routes) {
 
-        composable(Routes.HomeScreen.routes) {
-            HomeScreen()
+        composable(Routes.ProfileScreen.routes) {
+            ProfileScreen(navController)
         }
         composable(Routes.CameraViewScreen.routes) {
             CameraViewScreen()

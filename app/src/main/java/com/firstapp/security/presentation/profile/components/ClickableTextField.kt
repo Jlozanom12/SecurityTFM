@@ -15,6 +15,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 
+/**
+ * Componente reutilizable. Campo de texto clicable
+ */
 @Composable
 fun ClickableTextField(
     text: String,
@@ -23,8 +26,6 @@ fun ClickableTextField(
     modifier: Modifier = Modifier,
     textSize: TextUnit,
     color: Color
-
-
 ) {
     Row(
         modifier = modifier
@@ -36,8 +37,7 @@ fun ClickableTextField(
             imageVector = leadingIcon,
             contentDescription = null,
             modifier = Modifier.size(24.dp),
-
-
+            tint = Color(0xFFBDBDBD)
         )
         Text(
             text = text,
@@ -45,7 +45,7 @@ fun ClickableTextField(
             modifier = Modifier
                 .padding(start = 16.dp)
                 .weight(1f),
-            color = Color.Black
+            color = color
 
         )
     }

@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun StorageUsageBar(storageUsed: Float) {
-    val totalStorage = 5f // 5 GB Gratis
+    val totalStorage = 5f
     val progress = storageUsed / totalStorage
 
     Column(

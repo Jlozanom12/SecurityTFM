@@ -25,6 +25,9 @@ import androidx.navigation.NavController
 import com.firstapp.security.models.Routes
 
 
+/**
+ * Componente reutilizable que contiene las cards de las cámaras.
+ */
 @Composable
 fun CardComponent(navController: NavController) {
 
@@ -35,7 +38,7 @@ fun CardComponent(navController: NavController) {
             .padding(12.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Spacer(modifier = Modifier.padding(top = 270.dp))
+        Spacer(modifier = Modifier.padding(top = 220.dp))
 
         Card(
             shape = RoundedCornerShape(topStart = 16.dp, bottomStart = 16.dp),
@@ -46,7 +49,7 @@ fun CardComponent(navController: NavController) {
             colors = CardDefaults.cardColors(Color.White),
             onClick = { navController.navigate(Routes.CameraViewScreen.routes) }
         ) {
-            CameraStreaming(webViewRef)
+            CameraStreaming(/*webViewRef*/)
         }
         Button(
             onClick = { navController.navigate(Routes.CameraViewScreen.routes) },

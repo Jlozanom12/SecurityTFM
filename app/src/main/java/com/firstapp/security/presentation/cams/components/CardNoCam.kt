@@ -24,6 +24,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.firstapp.security.R
 
+/**
+ * Componente para cámara no disponible (imágen como si no tuviera señal)
+ */
 @Composable
 fun CardNoCam(){
     val context = LocalContext.current
