@@ -16,9 +16,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddAlert
-import androidx.compose.material.icons.filled.Favorite
+import androidx.compose.material.icons.filled.Audiotrack
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.Logout
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.HorizontalDivider
@@ -34,9 +33,7 @@ import com.firstapp.security.R
 import com.firstapp.security.models.Routes
 import com.firstapp.security.presentation.profile.components.ProfileMenuItem
 
-/**
- * Screen del Perfil del usuario
- */
+// Screen en la que se juntan todas las partes del perfil
 @Composable
 fun ProfileScreen(navController: NavController) {
     Column(
@@ -51,9 +48,8 @@ fun ProfileScreen(navController: NavController) {
     }
 }
 
-/**
- * Parte superior del perfil con imagen de usuario
- */
+
+// Parte superior del perfil con imágen de usuario
 @Composable
 fun ProfileHeader() {
     Box(
@@ -74,9 +70,7 @@ fun ProfileHeader() {
     }
 }
 
-/**
- *  Menú de opciones del perfil
- */
+// Menú del perfil
 @Composable
 fun ProfileMenu(navController: NavController) {
     Column(
@@ -94,15 +88,19 @@ fun ProfileMenu(navController: NavController) {
             navController.navigate(Routes.AlertScreen.routes)
         }
 
+        ProfileMenuItem("Audio", Icons.Default.Audiotrack,textColor = Color.White) {
+            navController.navigate(Routes.AudioScreen.routes)
+        }
+
         ProfileMenuItem("Ayuda", Icons.Default.Info,textColor = Color.White) {
             navController.navigate(Routes.HelpScreen.routes)
         }
+
 
         Spacer(modifier = Modifier.height(100.dp))
 
         HorizontalDivider(modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp))
         ProfileMenuItem("Cerrar Sesión", Icons.Default.Logout,textColor = Color.White) {
-            //navController.navigate(Routes.HomeScreen.routes)
         }
 
         Spacer(modifier = Modifier.height(100.dp))

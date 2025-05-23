@@ -79,15 +79,16 @@ fun ImageGalleryScreen() {
         }
     }
 
+
     when {
         isLoading -> {
-            Box(Modifier.fillMaxSize() .background(Color(0xFFF5F5F5)), contentAlignment = Alignment.Center) {
+            Box(Modifier.fillMaxSize() .background(Color(0xFF121C2B)), contentAlignment = Alignment.Center) {
                 CircularProgressIndicator()
             }
         }
 
         error != null -> {
-            Box(Modifier.fillMaxSize() .background(Color(0xFFF5F5F5))
+            Box(Modifier.fillMaxSize() .background(Color(0xFF121C2B))
                 , contentAlignment = Alignment.Center) {
                 Text(text = "Error: ${error}", style = MaterialTheme.typography.bodyMedium)
             }
@@ -97,12 +98,10 @@ fun ImageGalleryScreen() {
             LazyColumn(
                 modifier = Modifier
                     .fillMaxSize()
-                    .background(Color(0xFFF5F5F5))
-                    .padding(16.dp)
+                    .background(Color(0xFF121C2B))
+                    .padding(start = 8.dp, top = 40.dp)
             ) {
                 item {
-
-
                     //Barra de uso de almacenamiento
                     StorageUsageBar(storageUsed)
                     //Spacer(modifier = Modifier.height(8.dp))

@@ -1,5 +1,6 @@
 package com.firstapp.security.presentation.extras
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -7,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -17,20 +19,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.firstapp.security.R
 
 
-/**
- * Screen de ayuda de usuario con texto y emoticonos explicando la app.
- */
+// Screen de Ayuda con bases legales del proyecto
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
+
 fun HelpScreen() {
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text(modifier = Modifier.padding(start=100.dp),text ="Ayuda e Información", fontWeight = FontWeight.Bold) },
+                title = { Text(modifier = Modifier.padding(start = 100.dp), text = "Ayuda e Información", fontWeight = FontWeight.Bold) },
                 colors = TopAppBarDefaults.mediumTopAppBarColors(
                     containerColor = Color(0xFF121C2B),
                     titleContentColor = Color.White,
@@ -47,6 +50,17 @@ fun HelpScreen() {
                 verticalArrangement = Arrangement.Top,
                 horizontalAlignment = Alignment.Start
             ) {
+
+                // LOGO DE LA EMPRESA
+                Image(
+                    painter = painterResource(id = R.drawable.betterimage_ai_1747324692773_removebg_preview), // Asegúrate que coincida el nombre
+                    contentDescription = "Logo empresa",
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .size(100.dp)
+                        .padding(bottom = 16.dp)
+                )
+
                 Text(
                     text = "📖 ¿Cómo usar esta aplicación?",
                     style = MaterialTheme.typography.titleLarge,
@@ -96,11 +110,10 @@ fun HelpScreen() {
                     color = Color.Gray
                 )
 
-                Spacer(modifier = Modifier.height(170.dp))
+                Spacer(modifier = Modifier.height(70.dp))
 
-                //Poner nombre de la empresa
                 Text(
-                    text = "Versión 2.0.0 • © 2025 TuNombre o TuEmpresa",
+                    text = "Versión 2.0.0 • © 2025 Security-Cam",
                     style = MaterialTheme.typography.labelSmall,
                     color = Color.White,
                     modifier = Modifier.align(Alignment.CenterHorizontally)
@@ -109,3 +122,4 @@ fun HelpScreen() {
         }
     )
 }
+

@@ -10,6 +10,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
@@ -24,8 +25,19 @@ fun StorageUsageBar(storageUsed: Float) {
             .padding(16.dp)
     ) {
         Text(
+            modifier = Modifier.padding(top = 5.dp, start = 10.dp),
+            text = "Galería de Imágenes",
+            color = Color.White,
+            fontWeight = FontWeight.Bold,
+            fontSize = 25.sp
+        )
+
+        Spacer(modifier = Modifier.padding(10.dp))
+
+        Text(
             text = "Almacenamiento usado: ${"%.2f".format(storageUsed)} GB de 5 GB",
-            fontSize = 16.sp
+            fontSize = 16.sp,
+            color = Color.White
         )
 
         Spacer(modifier = Modifier.height(8.dp))

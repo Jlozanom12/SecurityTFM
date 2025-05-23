@@ -35,7 +35,7 @@ fun CameraStreaming() {
 */
 
 @Composable
-fun CameraStreaming(/*webViewRef: MutableState<WebView?>*/) {
+fun CameraStreaming(webViewRef: MutableState<WebView?>) {
     val streamUrl = "http://192.168.14.92:8080/stream"
 
     AndroidView(

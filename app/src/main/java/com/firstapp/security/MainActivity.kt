@@ -17,6 +17,7 @@ import com.firstapp.security.presentation.cams.StreamingScreen
 import com.firstapp.security.components.BottomBar
 import com.firstapp.security.models.Routes
 import com.firstapp.security.presentation.alerts.AlertScreen
+import com.firstapp.security.presentation.audio.AudioScreen
 import com.firstapp.security.presentation.extras.CameraViewScreen
 import com.firstapp.security.presentation.profile.ProfileScreen
 import com.firstapp.security.presentation.extras.HelpScreen
@@ -60,6 +61,9 @@ class MainActivity : ComponentActivity() {
                         }
                         composable(Routes.HelpScreen.routes) {
                             HelpScreen()
+                        }
+                        composable(Routes.AudioScreen.routes) {
+                            AudioScreen()
                         }
                     }
                 }

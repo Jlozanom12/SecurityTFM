@@ -44,10 +44,9 @@ import androidx.compose.ui.viewinterop.AndroidView
 import com.firstapp.security.presentation.cams.uploadSnapshot
 
 
-/**
- * Screen que se muestra al hacer click en la card de la cámara.
- * Se muestra el streaming de vídeo y permite haceer fotos.
- */
+
+// Screen que se muestra al hacer click en la card de la cámara.
+// Se muestra el streaming de vídeo y permite haceer fotos.
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CameraViewScreen() {
@@ -71,19 +70,20 @@ fun CameraViewScreen() {
             FloatingActionButton(
                 onClick = {
                     webViewRef.value?.let { webView ->
+                        // Crea un nuevo objeto Bitmap (una representación de la imagen en memoria).
                         val bitmap = Bitmap.createBitmap(
                             webView.width,
                             webView.height,
                             Bitmap.Config.ARGB_8888
                         )
+                        // El objeto canvas dibujará sobre el Bitmap que acabamos de crear.
                         val canvas = Canvas(bitmap)
                         webView.draw(canvas)
 
-                        // Llamada para subir la imagen
+                        // Llamada a la API para subir la imagen al servidor.
                         uploadSnapshot(bitmap, "http://50.17.211.163:5000/upload")
                     }
-                    Log.d("CameraViewScreen", "Floating Action Button presionado")
-                },
+                    Log.d("CameraViewScreen", "Floating Action Button presionado")},
                 containerColor = MaterialTheme.colorScheme.primary,
                 contentColor = Color.White,
                 modifier = Modifier.padding(bottom = 86.dp)
@@ -91,7 +91,7 @@ fun CameraViewScreen() {
                 Icon(Icons.Default.CameraAlt, contentDescription = "Capturar imagen")
             }
         },
-        floatingActionButtonPosition = FabPosition.End, // El FAB se coloca en la esquina inferior derecha
+        floatingActionButtonPosition = FabPosition.End,
         content = { padding ->
             Column(
                 modifier = Modifier
@@ -123,7 +123,7 @@ fun CameraViewScreen() {
 
                 Spacer(modifier = Modifier.height(24.dp))
 
-                // Información visual adicional (decorativo o funcional)
+
                 Text(
                     text = "Última transmisión activa",
                     color = Color.White,

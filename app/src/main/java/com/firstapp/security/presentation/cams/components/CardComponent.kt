@@ -1,5 +1,8 @@
 package com.firstapp.security.presentation.cams.components
 
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.util.Log
 import android.webkit.WebView
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -9,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.Camera
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Card
@@ -23,6 +27,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.firstapp.security.models.Routes
+import com.firstapp.security.presentation.cams.uploadSnapshot
 
 
 /**
@@ -49,10 +54,26 @@ fun CardComponent(navController: NavController) {
             colors = CardDefaults.cardColors(Color.White),
             onClick = { navController.navigate(Routes.CameraViewScreen.routes) }
         ) {
-            CameraStreaming(/*webViewRef*/)
+            CameraStreaming(webViewRef)
         }
         Button(
-            onClick = { navController.navigate(Routes.CameraViewScreen.routes) },
+            onClick = {
+                //
+                webViewRef.value?.let { webView ->
+                    val bitmap = Bitmap.createBitmap(
+                        webView.width,
+                        webView.height,
+                        Bitmap.Config.ARGB_8888
+                    )
+                    val canvas = Canvas(bitmap)
+                    webView.draw(canvas)
+
+                    // Llamada para subir la imagen
+                    uploadSnapshot(bitmap, "http://50.17.211.163:5000/upload2")
+                }
+                Log.d("CameraViewScreen", "Floating Action Button presionado")
+                //
+            },
             modifier = Modifier
                 .weight(1f)
                 .height(200.dp),
@@ -65,9 +86,9 @@ fun CardComponent(navController: NavController) {
             )
         ) {
             Icon(
-                imageVector = Icons.Default.ArrowForward,
+                imageVector = Icons.Default.Camera,
                 contentDescription = "Ver cámara",
-                tint = Color.Black
+                tint = Color(0xFF121C2B)
             )
         }
     }
