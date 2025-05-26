@@ -8,7 +8,6 @@ import android.webkit.WebView
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -19,7 +18,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.CameraAlt
-import androidx.compose.material.icons.filled.PhotoCamera
 import androidx.compose.material.icons.filled.Wifi
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
@@ -53,7 +51,7 @@ fun CameraViewScreen() {
     val webViewRef = remember { mutableStateOf<WebView?>(null) }
 
     // Dirección del stream MJPEG desde la ESP32-CAM
-    val cameraUrl = "http://192.168.14.92:8080/stream"
+    val cameraUrl = "http://192.168.10.37:8080/stream"
 
     Scaffold(
         topBar = {
